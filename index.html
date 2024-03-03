@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite GIF List</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css"></head>
+<body>
+  <div class="main-div">
+    <ul class="top-ul">
+      <li class="top-li close-li another-li">
+        <a>
+          <img class="top-icon" src="close.png">
+        </a>
+      </li>
+      <li class="top-li min-li">
+        <a>
+          <img class="top-icon" src="min.png">
+        </a>
+      </li>
+      <li class="top-li another-li">
+        <a>
+          <img class="top-icon" src="video.png">
+        </a>
+      </li>
+      <li class="top-li another-li">
+        <a>
+          <img class="top-icon" src="call.png">
+        </a>
+      </li>
+      <li class="name-li">
+        <a>
+          <div class="name-content">
+            <img class="arrow-img" src="arrow.png">
+            <div class="name-text">Mera Ajaj</div>
+            <div>
+              <img class="name-img" src="userphoto.png">
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <ul class="main-ul">
+      <li class="globe-button">
+        <a>
+          <img class="globe-img" src="globe.png">
+        </a>
+      </li>
+      <li class="smile-li">
+        <a>
+          <div>
+            <img class="smile-img" src="smile.png">
+          </div>
+          <div class="smile-text">Aa</div>
+        </a>
+      </li>
+      <li class="main-li  gif-li" id="openGIFWindowBtn">
+        <a>
+          <img class="gif-img" src="gif.png">
+        </a>
+      </li>
+      <li class="main-li">
+        <a>
+          <img class="gif-img" src="sticker.png">
+        </a>
+      </li>
+      <li class="main-li">
+        <a>
+          <img class="gif-img" src="photo.png">
+        </a>
+      </li>
+      <li class="main-li">
+        <a>
+          <img class="more-img" src="more.png">
+        </a>
+      </li>
+    </ul>    
+  </div>
+  <div class="gif-window" id="gifWindow">
+    <div class="fixed-div">
+      <div class="input-div">
+        <img class="search-img" src="search.png" >
+        <input type="text" placeholder="بحث" class="search-input">
+      </div>
+    </div>
+    <div id="loadingSpinner" style="display: none;">
+      <div class="spinner"></div>
+    </div>
+    <ul class="gif-container" id="gifContainer"> </ul>
+  </div>
+  <div id="triangle"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
