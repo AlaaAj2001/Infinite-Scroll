@@ -40,27 +40,22 @@ async function generateGIFs(offset = 0) {
     gifContainer.appendChild(gifItem);
 
     gifItem.addEventListener('click', () => {
-      const div = document.createElement('div');
-      div.style.position = 'fixed';
-      div.style.width = '100%';
-      div.style.height = '100%';
-      div.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-      div.style.display = 'flex';
-      div.style.justifyContent = 'center';
-      div.style.alignItems = 'center';
-    
-      const selectedImg = document.createElement('img');
-      selectedImg.src = url;
-      selectedImg.style.width = 'auto';
-      selectedImg.style.height = 'auto';
-    
-      div.appendChild(selectedImg);
-      document.body.appendChild(div);
-    
-      div.addEventListener('click', () => {
-        document.body.removeChild(div);
-      });
+      displayBigImg(url);
     });
+  });
+}
+
+function displayBigImg(url){
+  const div = document.createElement('div');
+  div.classList.add('big-img-div');
+  const selectedImg = document.createElement('img');
+  selectedImg.src = url;
+  div.appendChild(selectedImg);
+  document.body.appendChild(div);
+  
+  div.addEventListener('click', () => {
+    document.body.removeChild(div);
+    event.stopPropagation();
   });
 }
 
@@ -75,44 +70,30 @@ async function generateGIFsFromSearch(offset = 0, searchQuery) {
     gifContainer.appendChild(gifItem);
 
     gifItem.addEventListener('click', () => {
-      const div = document.createElement('div');
-      div.style.position = 'fixed';
-      div.style.width = '100%';
-      div.style.height = '100%';
-      div.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-      div.style.display = 'flex';
-      div.style.justifyContent = 'center';
-      div.style.alignItems = 'center';
-    
-      const selectedImg = document.createElement('img');
-      selectedImg.src = url;
-      selectedImg.style.width = 'auto';
-      selectedImg.style.height = 'auto';
-    
-      div.appendChild(selectedImg);
-      document.body.appendChild(div);
-    
-      div.addEventListener('click', () => {
-        document.body.removeChild(div);
-      });
+     displayBigImg(url);
     });
   });
 }
 
-openGIFWindowBtn.addEventListener('click', async () => {
-  loadingSpinner.style.display = 'block';
-  const searchQuery = searchInput.value.trim();
-  gifContainer.innerHTML = ''; 
-  page = 0;
-  if(searchQuery !== '') { 
-    await generateGIFsFromSearch(0, searchQuery);
-  } else {
-    await generateGIFs(0);  
-  } 
-  loadingSpinner.style.display = 'none';
-  gifWindow.style.display = 'block';
-  triangle.style.display = 'block';
-
+openGIFWindowBtn.addEventListener('click', async (event) => {
+  if(gifWindow.style.display === 'block'){
+    gifWindow.style.display = 'none';
+    triangle.style.display = 'none';
+  }
+  else{
+    loadingSpinner.style.display = 'block';
+    const searchQuery = searchInput.value.trim();
+    gifContainer.innerHTML = ''; 
+    page = 0;
+    if(searchQuery !== '') { 
+      await generateGIFsFromSearch(0, searchQuery);
+    } else {
+      await generateGIFs(0);  
+    } 
+    loadingSpinner.style.display = 'none';
+    gifWindow.style.display = 'block';
+    triangle.style.display = 'block';
+  }
 });
 
 searchInput.addEventListener('input', async () => {
@@ -149,3 +130,5 @@ document.addEventListener('click', (event) => {
     triangle.style.display = 'none';
   }
 });
+
+
